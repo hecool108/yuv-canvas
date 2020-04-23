@@ -415,6 +415,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			gl.clearColor(0.0, 0.0, 0.0, 0.0);
 			gl.clear(gl.COLOR_BUFFER_BIT);
 		};
+		self.dispose = function() {
+			self.clear();
+			gl.getExtension('WEBGL_lose_context').loseContext();
+		};
 
 		self.clear();
 
