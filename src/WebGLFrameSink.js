@@ -417,7 +417,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		};
 		self.dispose = function() {
 			self.clear();
+			gl.flush();
+			gl.finish();
 			gl.getExtension('WEBGL_lose_context').loseContext();
+			gl = null;
 		};
 
 		self.clear();

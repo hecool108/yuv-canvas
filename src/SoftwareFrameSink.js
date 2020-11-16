@@ -104,6 +104,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		self.clear = function() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		};
+		self.dispose = function() {
+			self.clear();
+			// gl.flush();
+			// gl.finish();
+			// gl.getExtension('WEBGL_lose_context').loseContext();
+			// gl = null;
+		};
 
 		return self;
 	}

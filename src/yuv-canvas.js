@@ -48,8 +48,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      * @param {YUVCanvasOptions} options - map of options
      * @returns {FrameSink} - instance of suitable subclass.
      */
-    attach: function(canvas, options) {
-      options = options || {};
+    attach: function(canvas, options ) {
+      options = options ||  {webGL:true};
+      // return new SoftwareFrameSink(canvas, options);
       var webGL = ('webGL' in options) ? options.webGL : WebGLFrameSink.isAvailable();
       if (webGL) {
         return new WebGLFrameSink(canvas, options);

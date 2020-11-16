@@ -1,6 +1,6 @@
 {
-  "name": "yuv-canvas-disposable",
-  "version": "1.0.0",
+  "name": "@edu/yuv-canvas-disposable",
+  "version": "1.0.3",
   "description": "Utility for drawing YUV image data to HTML5 canvas, and disposable",
   "main": "src/yuv-canvas.js",
   "repository": {
@@ -20,7 +20,8 @@
     "canvas",
     "webgl"
   ],
-  "author": "Tiger Wang",
+  "author": "wanghe9 <wanghe9@vipkid.com.cn>",
+  "private": false,
   "license": "MIT",
   "devDependencies": {
     "aliasify": "^2.0.0",

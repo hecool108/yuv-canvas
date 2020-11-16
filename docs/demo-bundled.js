@@ -566,6 +566,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		self.clear = function() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		};
+		self.dispose = function() {
+			self.clear();
+			// gl.flush();
+			// gl.finish();
+			// gl.getExtension('WEBGL_lose_context').loseContext();
+			// gl = null;
+		};
 
 		return self;
 	}
@@ -995,7 +1002,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		};
 		self.dispose = function() {
 			self.clear();
+			gl.flush();
+			gl.finish();
 			gl.getExtension('WEBGL_lose_context').loseContext();
+			gl = null;
 		};
 
 		self.clear();
@@ -1332,8 +1342,9 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      * @param {YUVCanvasOptions} options - map of options
      * @returns {FrameSink} - instance of suitable subclass.
      */
-    attach: function(canvas, options) {
-      options = options || {};
+    attach: function(canvas, options ) {
+      options = options ||  {webGL:true};
+      // return new SoftwareFrameSink(canvas, options);
       var webGL = ('webGL' in options) ? options.webGL : WebGLFrameSink.isAvailable();
       if (webGL) {
         return new WebGLFrameSink(canvas, options);
