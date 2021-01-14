@@ -1,6 +1,6 @@
 {
   "name": "@edu/yuv-canvas-disposable",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utility for drawing YUV image data to HTML5 canvas, and disposable",
   "main": "src/yuv-canvas.js",
   "repository": {
