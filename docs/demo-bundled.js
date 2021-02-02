@@ -1092,6 +1092,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			return false;
 		}
 	};
+	WebGLFrameSink.isSupportGL = function () {
+		var canvas = document.createElement('canvas')
+		return canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+	},
 
 	WebGLFrameSink.prototype = Object.create(FrameSink.prototype);
 
@@ -1343,12 +1347,17 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
      * @returns {FrameSink} - instance of suitable subclass.
      */
     attach: function(canvas, options ) {
-      options = options ||  {webGL:true};
+      options = options ||  {webGL:true,forcedDegrade:false};
       // return new SoftwareFrameSink(canvas, options);
       var webGL = WebGLFrameSink.isAvailable()//('webGL' in options) ? options.webGL : WebGLFrameSink.isAvailable();
+      if(options.forcedDegrade){
+        return new SoftwareFrameSink(canvas, options);
+      }
       if (webGL) {
+        console.log('yuv WebGLFrameSink');
         return new WebGLFrameSink(canvas, options);
       } else {
+        console.log('yuv SoftwareFrameSink');
         return new SoftwareFrameSink(canvas, options);
       }
     }

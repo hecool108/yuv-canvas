@@ -507,6 +507,10 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 			return false;
 		}
 	};
+	WebGLFrameSink.isSupportGL = function () {
+		var canvas = document.createElement('canvas')
+		return canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+	},
 
 	WebGLFrameSink.prototype = Object.create(FrameSink.prototype);
 
